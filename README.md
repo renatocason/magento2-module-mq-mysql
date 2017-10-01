@@ -1,6 +1,13 @@
 # Magento 2 Message Queue MySQL Backend
 MySQL message queue backend implementation for [Rcason_Mq](https://github.com/renatocason/magento2-module-mq).
 
+[![Build Status](https://travis-ci.org/renatocason/magento2-module-mq-mysql.svg?branch=master)](https://travis-ci.org/renatocason/magento2-module-mq-mysql)
+[![Coverage Status](https://coveralls.io/repos/github/renatocason/magento2-module-mq-mysql/badge.svg?branch=master)](https://coveralls.io/github/renatocason/magento2-module-mq-mysql?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/renatocason/magento2-module-mq-mysql/v/stable)](https://packagist.org/packages/renatocason/magento2-module-mq-mysql)
+[![Latest Unstable Version](https://poser.pugx.org/renatocason/magento2-module-mq-mysql/v/unstable)](https://packagist.org/packages/renatocason/magento2-module-mq-mysql)
+[![Total Downloads](https://poser.pugx.org/renatocason/magento2-module-mq-mysql/downloads)](https://packagist.org/packages/renatocason/magento2-module-mq-mysql)
+[![License](https://poser.pugx.org/renatocason/magento2-module-mq-mysql/license)](https://packagist.org/packages/renatocason/magento2-module-mq-mysql)
+
 ## Installation
 1. Require the module via Composer
 ```bash

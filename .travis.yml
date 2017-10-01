@@ -1,0 +1,24 @@
+sudo: false
+
+language: php
+
+php:
+    - 7.0
+
+install:
+    - echo "{\"http-basic\":{\"repo.magento.com\":{\"username\":\"${MAGENTO_USERNAME}\",\"password\":\"${MAGENTO_PASSWORD}\"}}}" > ~/.composer/auth.json
+    - composer install --prefer-dist
+    - composer create-project --repository=https://repo.magento.com magento/marketplace-eqp marketplace-eqp
+
+script:
+    - php marketplace-eqp/vendor/bin/phpcs Api/ Model/ Test/  --standard=MEQP2 --severity=10
+    - php vendor/bin/phpmd Api/,Model/,Test/ text cleancode,codesize,controversial,design,naming,unusedcode --ignore-violations-on-exit
+    - php vendor/phpunit/phpunit/phpunit --coverage-clover Test/Unit/logs/clover.xml Test
+
+after_script:
+    - php vendor/bin/coveralls -v
+
+env:
+    global:
+        - secure: "ipe5Lo/oNblilZUUJlopr79f0qEMcHJfpsxvv5BsJs8BbnPpJObU7s3NAhrAWy6wlWipJR8v4rRQWTLwXMMRS4+r9Hi2Z7X6GHzjKS7vbci5SAE/LA2UrFRxA7u1vb3E/63Na8shM+eQIeO8mqNFJNOkHOMwiiNvr5ardjAGRfWv01Q6LhpBadi8u3YB0KBuOrM498XbJTm8PUCEwXPzjwGiSKIko/1zJ7J0HeEqF8ZgkzvHnpFedJKW6c0LxkH7yuXjkIx33aqJB/5JgF5qc1WHz/32lXj0m76Fik83ciPZzJZykhSyFQk7OfewYjWr3MVbTH0rEGrnyV1Mlix1oanbyKDAMVz1CjoZkE5v6PXakUh2sLB8n99KRZMjLaiTz6zT4gG6Zu2DMq/tf8YK1BeLNtzJ6m7NLvaOdETz8sxdTSTdxMLd8KTYDi5j6VtY7JT/6GdJjbKc2PJsA0I4A7moIaZQMJoRSb9NcaWQWyTtwkP5KPnivPUoFyQydJwB4tPc8Kv7e4mm7VT1SGB7q/MitX2gKs3xMNuPFxocXEVEg5OFiKxv5mpDD6C60zC0GSpRTBGnZqqPk5nydz2m4FCyG5jPBb6VZm769DKNYFK/PNpRBdWp8EGnCgVulFU1igEdhzzDuyGNFUVFKb0QqxqIG01HOF5ESOGJ8zROHzI="
+        - secure: "nMfsnZAMUWI01UlQjuua3lWCj80weKjOK7Nb92zWUV55rmgv160zeUIRekJVPtRcBCQPF1BjPkeS3Ogztn+ZBf3CRQzsWKSefvmhY1dwhvnTTDNK8ZmoiSItv2Ebi94DqUbnq1JJxRbIctwPLso7rl1RE9gK/EpOZV8m43GP39nGMgX0Xgq1WIioX5VRTj3/ah05NUeJksR8poFJLLX39gLAQqpU9d27jRi5U2gjqcRfXbiC+BdB89zlY9rZCigAhy4D63h6Yv+1bugMr4wdLFcVd09DVwT4kcaPwWiVfYYlt7yGX93eoOkImLLP/5p3HGNW7ZPvb7NkD/gUQfnW9YYIZoQS6yqpzUHCZ2qK3vFBZ2YIML5aBK4Nd5L+pQjZcj8vzEy2e2WDU0E/KNgYDtFJBh0PMJyCfsltr1xNysdl4zg1SdZHcRFKb1FzJfMmDQ0lQ9xKRpi4M58h83q0cGXl/ywU1dHsyECHBLLP17nuIYb3/pps3E7ztdg4U5oGrDq4gV2PaBASyc4WGvQHGUNTRmFfIhUJA4zz+RfPVf/R0u449VBiO0v6XZSxsdJMpxfe5e2R5DBUegBR5pFm2o2Mc8nAjR7X44f3gSW5c/8ec9R0r0AJAZrBFRrlVSUR3vcaX2t0rBxH/j0rp2ncSL1yzFZvziJJtVfV8Nel3ok="
