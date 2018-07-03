@@ -4,6 +4,11 @@ namespace Rcason\MqMysql\Api;
 
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 
+/**
+ * @api
+ * 
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 interface QueueMessageRepositoryInterface
 {
     /**

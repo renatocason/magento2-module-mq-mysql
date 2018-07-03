@@ -8,6 +8,9 @@ use Rcason\MqMysql\Api\QueueMessageRepositoryInterface;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message as ResourceModel;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message\CollectionFactory as CollectionFactory;
 
+/**
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 class MessageRepository implements QueueMessageRepositoryInterface
 {
     /**

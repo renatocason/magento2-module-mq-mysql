@@ -8,6 +8,9 @@ use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 use Rcason\MqMysql\Api\Data\QueueMessageInterfaceFactory;
 use Rcason\MqMysql\Api\QueueMessageRepositoryInterface;
 
+/**
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
 {
     /**
@@ -86,13 +89,14 @@ class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
     /**
      * {@inheritdoc}
      */
-    public function reject(MessageEnvelopeInterface $message, $requeue = true)
+    public function reject(MessageEnvelopeInterface $message, bool $requeue)
     {
         $message = $this->queueMessageRepository->get($message->getBrokerRef());
+        
         if($requeue) {
             $this->queueMessageRepository->requeue($message);
-        } else {
-            $this->queueMessageRepository->remove($message);
+            return;
         }
+        $this->queueMessageRepository->remove($message);
     }
 }

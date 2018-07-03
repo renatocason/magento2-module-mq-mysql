@@ -6,6 +6,9 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 use Rcason\MqMysql\Model\Queue\Message;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message as ResourceModel;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCaseMethodName)
+ */
 class Collection extends AbstractCollection
 {
     /**

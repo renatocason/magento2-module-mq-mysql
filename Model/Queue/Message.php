@@ -6,6 +6,10 @@ use Magento\Framework\Model\AbstractModel;
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message as ResourceModel;
 
+/**
+ * @SuppressWarnings(PHPMD.CamelCasePropertyName)
+ * @SuppressWarnings(PHPMD.CamelCaseMethodName)
+ */
 class Message extends AbstractModel
     implements QueueMessageInterface
 {
