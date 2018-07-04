@@ -5,6 +5,7 @@ namespace Rcason\MqMysql\Model\ResourceModel\Queue;
 use Magento\Framework\Model\ResourceModel\Db\VersionControl\AbstractDb;
 
 /**
+ * @codeCoverageIgnore
  * @SuppressWarnings(PHPMD.CamelCaseMethodName)
  */
 class Message extends AbstractDb

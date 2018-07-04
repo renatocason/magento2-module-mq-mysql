@@ -2,11 +2,12 @@
 
 namespace Rcason\MqMysql\Model\Queue;
 
+use Magento\Framework\Exception\NotFoundException;
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 use Rcason\MqMysql\Api\Data\QueueMessageInterfaceFactory;
 use Rcason\MqMysql\Api\QueueMessageRepositoryInterface;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message as ResourceModel;
-use Rcason\MqMysql\Model\ResourceModel\Queue\Message\CollectionFactory as CollectionFactory;
+use Rcason\MqMysql\Model\ResourceModel\Queue\Message\CollectionFactory;
 
 /**
  * @SuppressWarnings(PHPMD.ShortVariable)
@@ -80,14 +81,14 @@ class MessageRepository implements QueueMessageRepositoryInterface
     public function get($id)
     {
         if(!$id) {
-            throw new \Exception('No id specified in queue message get');
+            throw new NotFoundException(__('No id specified in queue message get'));
         }
         
         $queueMessage = $this->queueMessageFactory->create();
         $this->resourceModel->load($queueMessage, $id);
 
         if($id != $queueMessage->getId()) {
-            throw new \Exception('Queue message not found');
+            throw new NotFoundException(__('Queue message not found'));
         }
 
         return $queueMessage;

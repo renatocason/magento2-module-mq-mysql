@@ -7,6 +7,7 @@ use Rcason\MqMysql\Model\Queue\Message;
 use Rcason\MqMysql\Model\ResourceModel\Queue\Message as ResourceModel;
 
 /**
+ * @codeCoverageIgnore
  * @SuppressWarnings(PHPMD.CamelCaseMethodName)
  */
 class Collection extends AbstractCollection

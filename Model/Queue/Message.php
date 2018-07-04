@@ -114,17 +114,17 @@ class Message extends AbstractModel
     /**
      * @inheritdoc
      */
-    public function getMessageBody()
+    public function getMessageContent()
     {
-        return $this->getData(QueueMessageInterface::MESSAGE_BODY);
+        return $this->getData(QueueMessageInterface::MESSAGE_CONTENT);
     }
 
     /**
      * @inheritdoc
      */
-    public function setMessageBody($messageBody)
+    public function setMessageContent($messageContent)
     {
-        $this->setData(QueueMessageInterface::MESSAGE_BODY, $messageBody);
+        $this->setData(QueueMessageInterface::MESSAGE_CONTENT, $messageContent);
         return $this;
     }
 }

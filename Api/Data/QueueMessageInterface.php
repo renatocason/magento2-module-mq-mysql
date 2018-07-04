@@ -10,14 +10,14 @@ interface QueueMessageInterface
     /**#@+
      * Constants for keys of data array. Identical to the name of the getter in snake case.
      */
-    
+
     const ENTITY_ID = 'entity_id';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
     const STATUS = 'status';
     const RETRIES = 'retries';
     const QUEUE_NAME = 'queue_name';
-    const MESSAGE_BODY = 'message_body';
+    const MESSAGE_CONTENT = 'message_content';
     
     /**
      * Gets the entity ID.
@@ -110,17 +110,17 @@ interface QueueMessageInterface
     public function setQueueName($queueName);
     
     /**
-     * Gets the message body.
+     * Gets the message content.
      *
      * @return string
      */
-    public function getMessageBody();
+    public function getMessageContent();
 
     /**
-     * Sets the message body.
+     * Sets the message content.
      *
-     * @param string $messageBody
+     * @param string $messageContent
      * @return $this
      */
-    public function setMessageBody($messageBody);
+    public function setMessageContent($messageContent);
 }

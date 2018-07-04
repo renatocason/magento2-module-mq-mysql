@@ -51,7 +51,7 @@ class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
     }
     
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function enqueue(MessageEnvelopeInterface $messageEnvelope)
     {
@@ -63,7 +63,7 @@ class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
     }
     
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function peek()
     {
@@ -78,7 +78,7 @@ class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
     }
     
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function acknowledge(MessageEnvelopeInterface $message)
     {
@@ -87,7 +87,7 @@ class MysqlBroker implements \Rcason\Mq\Api\BrokerInterface
     }
     
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function reject(MessageEnvelopeInterface $message, bool $requeue)
     {
