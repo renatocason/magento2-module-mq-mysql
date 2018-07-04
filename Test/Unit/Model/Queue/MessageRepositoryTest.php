@@ -148,6 +148,15 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
      * @covers Rcason\MqMysql\Model\Queue\MessageRepository::get
      * @expectedException \Magento\Framework\Exception\NotFoundException
      */
+    public function testGetInvalid()
+    {
+        $this->messageRepository->get(0);
+    }
+    
+    /**
+     * @covers Rcason\MqMysql\Model\Queue\MessageRepository::get
+     * @expectedException \Magento\Framework\Exception\NotFoundException
+     */
     public function testGetNotFound()
     {
         $this->queueMessageFactory->expects($this->once())
@@ -158,10 +167,7 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
             ->method('load')
             ->with($this->message, self::MESSAGE_ID);
         
-        $this->assertEquals(
-            $this->messageRepository->get(self::MESSAGE_ID),
-            $this->message
-        );
+        $this->messageRepository->get(self::MESSAGE_ID);
     }
 
     /**
