@@ -16,6 +16,7 @@ use Rcason\MqMysql\Model\ResourceModel\Queue\Message\CollectionFactory;
 class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     const MAX_RETRIES = 5;
+    const MESSAGE_ID = 7;
     
     /**
      * @var QueueMessageInterfaceFactory|MockObject
@@ -127,20 +128,18 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
      */
     public function testGet()
     {
-        $id = 7;
-        
         $this->queueMessageFactory->expects($this->once())
             ->method('create')
             ->willReturn($this->message);
         
         $this->resourceModel->expects($this->once())
             ->method('load')
-            ->with($this->message, $id);
+            ->with($this->message, self::MESSAGE_ID);
         
-        $this->message->setId($id);
+        $this->message->setId(self::MESSAGE_ID);
         
         $this->assertEquals(
-            $this->messageRepository->get($id),
+            $this->messageRepository->get(self::MESSAGE_ID),
             $this->message
         );
     }
@@ -151,18 +150,16 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetNotFound()
     {
-        $id = 7;
-        
         $this->queueMessageFactory->expects($this->once())
             ->method('create')
             ->willReturn($this->message);
         
         $this->resourceModel->expects($this->once())
             ->method('load')
-            ->with($this->message, $id);
+            ->with($this->message, self::MESSAGE_ID);
         
         $this->assertEquals(
-            $this->messageRepository->get($id),
+            $this->messageRepository->get(self::MESSAGE_ID),
             $this->message
         );
     }

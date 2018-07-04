@@ -24,7 +24,7 @@ class MysqlBrokerTest extends \PHPUnit\Framework\TestCase
     /**
      * @var MessageEnvelopeInterfaceFactory|MockObject
      */
-    private $queueMessageEnvelopeFactory;
+    private $messageEnvelopeFactory;
     
     /**
      * @var QueueMessageRepositoryInterface|MockObject
