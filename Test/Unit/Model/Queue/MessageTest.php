@@ -12,7 +12,7 @@ class MessageTest extends \PHPUnit\Framework\TestCase
     const VALUE_STATUS = 1;
     const VALUE_RETRIES = 7;
     const VALUE_QUEUE_NAME = 'QueueName';
-    const VALUE_MESSAGE_BODY = 'Test message body';
+    const VALUE_MESSAGE_CONTENT = 'Test message body';
     
     /**
      * @var Message
@@ -101,15 +101,15 @@ class MessageTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Rcason\MqMysql\Model\Queue\Message::setMessageBody
-     * @covers Rcason\MqMysql\Model\Queue\Message::getMessageBody
+     * @covers Rcason\MqMysql\Model\Queue\Message::setMessageContent
+     * @covers Rcason\MqMysql\Model\Queue\Message::getMessageContent
      */
-    public function testMessageBody()
+    public function testMessageContent()
     {
-        $this->message->setMessageBody(self::VALUE_MESSAGE_BODY);
+        $this->message->setMessageContent(self::VALUE_MESSAGE_CONTENT);
         $this->assertEquals(
-            $this->message->getMessageBody(),
-            self::VALUE_MESSAGE_BODY
+            $this->message->getMessageContent(),
+            self::VALUE_MESSAGE_CONTENT
         );
     }
 }
