@@ -15,6 +15,7 @@ use Rcason\MqMysql\Model\ResourceModel\Queue\Message\CollectionFactory;
 
 class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
 {
+    const QUEUE_NAME = 'test';
     const MAX_RETRIES = 5;
     const MESSAGE_ID = 7;
     
@@ -118,7 +119,7 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
             ->willReturn($this->collection);
         
         $this->assertEquals(
-            $this->messageRepository->peek(),
+            $this->messageRepository->peek(self::QUEUE_NAME),
             $this->message
         );
     }

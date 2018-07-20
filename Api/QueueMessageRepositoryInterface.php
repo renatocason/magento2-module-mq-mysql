@@ -22,9 +22,10 @@ interface QueueMessageRepositoryInterface
     /**
      * Take first element in the queue without removing it
      * 
+     * @param string $queueName
      * @return \Rcason\MqMysql\Api\Data\QueueMessageInterface
      */
-    public function peek();
+    public function peek(string $queueName);
     
     /**
      * Get message by id
