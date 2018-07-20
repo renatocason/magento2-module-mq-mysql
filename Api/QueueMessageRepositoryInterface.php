@@ -2,6 +2,7 @@
 
 namespace Rcason\MqMysql\Api;
 
+use Magento\Framework\Exception\NotFoundException;
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 
 interface QueueMessageRepositoryInterface
@@ -16,14 +17,16 @@ interface QueueMessageRepositoryInterface
     /**
      * Take first element in the queue without removing it
      * 
+     * @param string $queueName
      * @return \Rcason\MqMysql\Api\Data\QueueMessageInterface
      */
-    public function peek();
+    public function peek(string $queueName);
     
     /**
      * Get message by id
      * 
      * @return \Rcason\MqMysql\Api\Data\QueueMessageInterface
+     * @throws NotFoundException
      */
     public function get($id);
     
