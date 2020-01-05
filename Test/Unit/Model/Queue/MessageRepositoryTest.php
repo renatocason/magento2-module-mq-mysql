@@ -4,6 +4,7 @@ namespace Rcason\MqMysql\Test\Unit\Model\Queue;
 
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 
+use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 use Rcason\MqMysql\Api\Data\QueueMessageInterfaceFactory;
 use Rcason\MqMysql\Api\QueueMessageRepositoryInterface;
@@ -49,7 +50,7 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
+        $objectManager = new ObjectManager($this);
         
         $this->queueMessageFactory = $this->getMockBuilder(QueueMessageInterfaceFactory::class)
             ->disableOriginalConstructor()

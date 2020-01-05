@@ -2,6 +2,7 @@
 
 namespace Rcason\MqMysql\Test\Unit\Model;
 
+use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Rcason\Mq\Api\BrokerInterface;
 use Rcason\Mq\Api\Data\MessageEnvelopeInterfaceFactory;
 use Rcason\Mq\Model\MessageEnvelope;
@@ -10,6 +11,9 @@ use Rcason\MqMysql\Api\QueueMessageRepositoryInterface;
 use Rcason\MqMysql\Model\Queue\Message;
 use Rcason\MqMysql\Model\MysqlBroker;
 
+/**
+ * @SuppressWarnings(PHPMD.LongVariable)
+ */
 class MysqlBrokerTest extends \PHPUnit\Framework\TestCase
 {
     const QUEUE_NAME = 'test_queue';
@@ -51,7 +55,7 @@ class MysqlBrokerTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
+        $objectManager = new ObjectManager($this);
         
         $this->queueMessageFactory = $this->getMockBuilder(QueueMessageInterfaceFactory::class)
             ->disableOriginalConstructor()
