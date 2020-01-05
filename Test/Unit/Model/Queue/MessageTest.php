@@ -2,6 +2,7 @@
 
 namespace Rcason\MqMysql\Test\Unit\Model\Queue;
 
+use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Rcason\MqMysql\Api\Data\QueueMessageInterface;
 use Rcason\MqMysql\Model\Queue\Message;
 
@@ -24,7 +25,7 @@ class MessageTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $objectManager = new \Magento\Framework\TestFramework\Unit\Helper\ObjectManager($this);
+        $objectManager = new ObjectManager($this);
         $this->message = $objectManager->getObject(Message::class);
         
         parent::setUp();
