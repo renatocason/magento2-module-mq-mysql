@@ -182,7 +182,7 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->message->setStatus(QueueMessageInterface::STATUS_TO_PROCESS);
         $this->message->setRetries($retries);
         
-        $this->messageRepository->requeue($this->message);
+        $this->messageRepository->requeue($this->message, 5, 0);
         
         $this->assertEquals(
             $this->message->getRetries(),
@@ -205,7 +205,7 @@ class MessageRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->message->setStatus(QueueMessageInterface::STATUS_TO_PROCESS);
         $this->message->setRetries($retries);
         
-        $this->messageRepository->requeue($this->message);
+        $this->messageRepository->requeue($this->message, 5, 0);
         
         $this->assertEquals(
             $this->message->getRetries(),

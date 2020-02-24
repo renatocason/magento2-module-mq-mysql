@@ -18,7 +18,8 @@ interface QueueMessageInterface
     const RETRIES = 'retries';
     const QUEUE_NAME = 'queue_name';
     const MESSAGE_CONTENT = 'message_content';
-    
+    const RUN_TASK_AT = 'run_task_at';
+
     /**
      * Gets the entity ID.
      *
@@ -123,4 +124,19 @@ interface QueueMessageInterface
      * @return $this
      */
     public function setMessageContent($messageContent);
+
+    /**
+     * Gets the date/time we run the task. Null means ASAP.
+     *
+     * @return string|null
+     */
+    public function getRunTaskAt();
+
+    /**
+     * Sets the date/time we run the task. Null means ASAP.
+     *
+     * @param string|null $runTaskAt
+     * @return $this
+     */
+    public function setRunTaskAt($runTaskAt);
 }
