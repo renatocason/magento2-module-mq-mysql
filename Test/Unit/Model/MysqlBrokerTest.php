@@ -200,7 +200,7 @@ class MysqlBrokerTest extends \PHPUnit\Framework\TestCase
             ->with($this->message);
         
         $this->messageEnvelope->setBrokerRef(self::MESSAGE_ID);
-        $this->mysqlBroker->reject($this->messageEnvelope, false);
+        $this->mysqlBroker->reject($this->messageEnvelope, false, 5, 0);
     }
     
     /**
@@ -218,6 +218,6 @@ class MysqlBrokerTest extends \PHPUnit\Framework\TestCase
             ->with($this->message);
         
         $this->messageEnvelope->setBrokerRef(self::MESSAGE_ID);
-        $this->mysqlBroker->reject($this->messageEnvelope, true);
+        $this->mysqlBroker->reject($this->messageEnvelope, true, 5, 0);
     }
 }

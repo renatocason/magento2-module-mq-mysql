@@ -127,4 +127,21 @@ class Message extends AbstractModel
         $this->setData(QueueMessageInterface::MESSAGE_CONTENT, $messageContent);
         return $this;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function getRunTaskAt()
+    {
+        return $this->getData(QueueMessageInterface::RUN_TASK_AT);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setRunTaskAt($runTaskAt)
+    {
+        $this->setData(QueueMessageInterface::RUN_TASK_AT, $runTaskAt);
+        return $this;
+    }
 }

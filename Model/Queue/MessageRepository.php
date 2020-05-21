@@ -30,26 +30,18 @@ class MessageRepository implements QueueMessageRepositoryInterface
     protected $collectionFactory;
     
     /**
-     * @var int
-     */
-    protected $maxRetries;
-    
-    /**
      * @param QueueMessageInterfaceFactory $queueMessageFactory
      * @param ResourceModel $resourceModel
      * @param CollectionFactory $collectionFactory
-     * @param int $maxRetries
      */
     public function __construct(
         QueueMessageInterfaceFactory $queueMessageFactory,
         ResourceModel $resourceModel,
-        CollectionFactory $collectionFactory,
-        $maxRetries = 5
+        CollectionFactory $collectionFactory
     ) {
         $this->queueMessageFactory = $queueMessageFactory;
         $this->resourceModel = $resourceModel;
         $this->collectionFactory = $collectionFactory;
-        $this->maxRetries = $maxRetries;
     }
     
     /**
@@ -69,6 +61,13 @@ class MessageRepository implements QueueMessageRepositoryInterface
         $collection = $this->collectionFactory->create()
             ->addFieldToFilter('status', 0)
             ->addFieldToFilter('queue_name', $queueName)
+            ->addFieldToFilter(
+                ['run_task_at', 'run_task_at'],
+                [
+                    ['null' => true],
+                    ['lteq' => date($this->getTimestampFormat(), time())]
+                ]
+            )
             ->setOrder('updated_at', 'ASC')
             ->setCurPage(1)
             ->setPageSize(1);
@@ -98,14 +97,19 @@ class MessageRepository implements QueueMessageRepositoryInterface
     /**
      * @inheritdoc
      */
-    public function requeue(QueueMessageInterface $message)
+    public function requeue(QueueMessageInterface $message, int $maxRetries, int $retryInterval)
     {
         // Trigger date update
         $message->setUpdatedAt(null);
+        if (empty($retryInterval)) {
+            $message->setRunTaskAt(null);
+        } else {
+            $message->setRunTaskAt(date($this->getTimestampFormat(), time() + $retryInterval));
+        }
         
         // Increase retries count
         $message->setRetries($message->getRetries() + 1);
-        if($message->getRetries() >= $this->maxRetries) {
+        if($maxRetries > 0 && $message->getRetries() >= $maxRetries) {
             $message->setStatus(QueueMessageInterface::STATUS_MAX_RETRIES_EXCEEDED);
         }
         
@@ -118,5 +122,13 @@ class MessageRepository implements QueueMessageRepositoryInterface
     public function remove(QueueMessageInterface $message)
     {
         $this->resourceModel->delete($message);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getTimestampFormat()
+    {
+        return 'Y-m-d H:i:s';
     }
 }
